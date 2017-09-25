@@ -1,0 +1,99 @@
+@import "../sdk/styles/sdk_elevation";
+@import "../sdk/styles/sdk_color";
+@import "../sdk/styles/sdk_fonts";
+@import "../sdk/styles/sdk_varibles";
+
+$app-header-height: 56px;
+@mixin header {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 429px;
+    text-align: center;
+    height: 100%;
+    line-height: 60px;
+    float: left;
+}
+
+.header-wrapper {
+    height: $app-header-height;
+    background: rgba(map_get($GREY, A100), 0.8);
+    @include elevation(6);
+    .logo-wrapper {
+        float: left;
+        position: relative;
+        top: 10px;
+        left: 128px;
+        cursor: pointer;
+        display: none;
+    }
+    .menus-wrapper {
+        width: 1360px;
+        height: 100%;
+        margin: 0 auto;
+        .menu-title {
+            @include header();
+            .menu-title-normal {
+                text-align: center;
+                height: 100%;
+                .menus-list {
+                    height: 100%;
+                    .menus-item {
+                        display: inline-block;
+                        width: calc(100% / 4);
+                        height: $app-header-height;
+                        a {
+                            display: inline-block;
+                            @extend .mat-title;
+                            @include animation(color, $standard_curve, $ENTERING);
+                            color: map_get($GREY, 500);
+                            margin: 12px 0 0 0;
+                            width: 100%;
+                            &:hover {
+                                color: map_get($GREY, 400);
+                            }
+                            &.active {
+                                font-weight: 700;
+                                color: map_get($GREY, 300);
+                            }
+                        }
+                    }
+                }
+            }
+            .menu-title-detail {
+                margin: 0;
+                @extend .mat-title;
+                color: map_get($GREY, 300);
+                line-height: $app-header-height;
+            }
+            .menu-title-dropDown {
+
+            }
+            .menu-title-search {
+
+            }
+        }
+        .menu-subtitle {
+            @include header();
+            @extend .mat-h2;
+        }
+        .header-buttons {
+            float: right;
+            position: relative;
+            top: 7px;
+            .header-more-btn {
+                .btn-icon {
+                    display: inline-block;
+                    cursor: pointer;
+                    @include animation(all, $standard_curve, $ENTERING);
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
+                .btn-rotateY {
+                    @include transform(rotate(180deg));
+                }
+            }
+        }
+    }
+}

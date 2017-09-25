@@ -1,0 +1,32 @@
+<div class="header-wrapper">
+    <div class="logo-wrapper">
+    </div>
+    <div class="menus-wrapper">
+        <div class="menu-title" [ngSwitch]="menuTypes" *ngIf="!isRotate">
+            <div class="menu-title-normal" *ngSwitchCase="1">
+                <ul class="menus-list">
+                    <li class="menus-item" *ngFor="let menu of mainMenus">
+                        <a md-button [routerLink]="[menu.menuUrl]" routerLinkActive="active"
+                           [routerLinkActiveOptions]="{exact: true}">{{menu.menuTitle}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-title-detail" *ngSwitchCase="2">{{menuDetail}}</div>
+            <div class="menu-title-dropDown" *ngSwitchCase="3">menu-title-dropDown</div>
+            <div class="menu-title-search" *ngSwitchCase="4">
+                <div class="header-title">{{menuDetail}}</div>
+                <div class="header-counter">( {{counts}} )</div>
+            </div>
+        </div>
+        <div class="menu-subtitle" *ngIf="isRotate" [@fadeMenu]="isRotate">{{appLogoTitle}}</div>
+        <div class="header-buttons">
+            <div class="header-more-btn">
+                <a class="btn-icon" md-icon-button aria-hidden="true" [class.btn-rotateY]="isRotate" (click)="menuShowMore()">
+                    <i class="material-icons md-30 md-light">{{menuButtonStatus}}</i>
+                </a>
+            </div>
+        </div>
+        <header-more [menuList]="subMainMenu" *ngIf="isRotate" (isSubTitleEmitter)="subMoreTrigger($event)"
+                     [@slideMenu]="isRotate"></header-more>
+    </div>
+</div>
